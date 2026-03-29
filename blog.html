@@ -1,0 +1,724 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antarprerana Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f5f8fc;
+        --bg-2: #eaf3fb;
+        --bg-3: #d7e8f7;
+        --ink: #0a1e46;
+        --ink-2: #17336b;
+        --ink-3: #4b6491;
+        --brand: #1f4fa3;
+        --brand-2: #25b4e4;
+        --brand-dk: #143b82;
+        --soft: #8bcfea;
+        --soft-2: #5fafcf;
+        --border: rgba(10, 30, 70, 0.12);
+        --border-hi: rgba(10, 30, 70, 0.28);
+        --card: #ffffff;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+      }
+
+      button {
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--brand);
+        border-radius: 0;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 60px;
+        display: flex;
+        align-items: stretch;
+        background: var(--ink);
+        border-bottom: 3px solid var(--brand);
+      }
+
+      .nav-logo-block {
+        display: flex;
+        align-items: center;
+        padding: 0 32px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.06em;
+        color: var(--bg);
+        line-height: 1;
+      }
+
+      .logo-dot {
+        color: var(--brand-2);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        align-items: stretch;
+        flex: 1;
+      }
+
+      .nav-links li {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.45);
+        transition:
+          color 0.2s,
+          background 0.2s;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--bg);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-cta {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        background: var(--brand);
+        color: #fff;
+        margin-left: auto;
+        transition: background 0.2s;
+      }
+
+      .nav-cta:hover {
+        background: var(--brand-2);
+      }
+
+      /* COMMON */
+      .wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 54px;
+      }
+
+      .sec {
+        padding: 120px 0;
+      }
+
+      .slabel {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--brand);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .slabel::before {
+        content: "▶";
+        font-size: 0.5rem;
+      }
+
+      .sh2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 5vw, 5.4rem);
+        line-height: 0.92;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 48px;
+        margin-bottom: 42px;
+      }
+
+      .section-note {
+        max-width: 420px;
+        font-size: 0.95rem;
+        font-weight: 300;
+        line-height: 1.85;
+        color: var(--ink-3);
+      }
+
+      /* BLOG ONLY PAGE */
+      #blog-grid {
+        background: var(--bg-2);
+        padding-top: 140px;
+        min-height: 100vh;
+      }
+
+      .blog-layout {
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 30px;
+        align-items: start;
+      }
+
+      .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+
+      .post-card,
+      .mini-post,
+      .side-box {
+        background: var(--card);
+        border: 1px solid var(--border-hi);
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s,
+          background 0.22s;
+      }
+
+      .post-card:hover,
+      .mini-post:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(23, 51, 107, 0.08);
+      }
+
+      .post-card {
+        overflow: hidden;
+      }
+
+      .post-media {
+        height: 255px;
+        overflow: hidden;
+        position: relative;
+        background: var(--ink);
+      }
+
+      .post-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+
+      .post-card:hover .post-media img {
+        transform: scale(1.05);
+      }
+
+      .post-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(10, 30, 70, 0.08),
+          rgba(10, 30, 70, 0.18)
+        );
+        pointer-events: none;
+      }
+
+      .post-body {
+        padding: 28px;
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.56rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 8px 12px;
+        background: var(--bg-2);
+        color: var(--brand);
+        margin-bottom: 18px;
+      }
+
+      .post-body h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.1;
+        margin-bottom: 12px;
+      }
+
+      .meta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        color: var(--soft-2);
+        margin-bottom: 16px;
+      }
+
+      .post-body p {
+        font-size: 0.88rem;
+        line-height: 1.82;
+        color: var(--ink-3);
+        margin-bottom: 18px;
+      }
+
+      .link-arrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.92rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand);
+      }
+
+      .link-arrow:hover {
+        color: var(--brand-2);
+      }
+
+      .sidebar {
+        display: grid;
+        gap: 24px;
+        position: sticky;
+        top: 90px;
+      }
+
+      .side-box {
+        padding: 26px;
+      }
+
+      .side-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.28rem;
+        font-weight: 700;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 18px;
+      }
+
+      .mini-post {
+        padding: 22px;
+        border: 1px solid var(--border);
+        margin-bottom: 16px;
+      }
+
+      .mini-post:last-child {
+        margin-bottom: 0;
+      }
+
+      .mini-post .mini-cat {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.54rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--brand);
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .mini-post h4 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.15;
+        margin-bottom: 10px;
+      }
+
+      .mini-post p {
+        font-size: 0.82rem;
+        line-height: 1.72;
+        color: var(--ink-3);
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--ink);
+        padding: 0;
+        border-top: 3px solid var(--brand-2);
+      }
+
+      .foot {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      .foot > * {
+        padding: 40px 48px;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .foot > *:last-child {
+        border-right: none;
+      }
+
+      .flogo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        color: var(--bg);
+        letter-spacing: 0.06em;
+      }
+
+      .flogo .hi {
+        color: var(--brand-2);
+      }
+
+      .fsub2 {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.3);
+        margin-top: 6px;
+      }
+
+      .flinks {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .flinks a {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.35);
+        transition: color 0.2s;
+      }
+
+      .flinks a:hover {
+        color: var(--brand-2);
+      }
+
+      .fcopy {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.06em;
+        color: rgba(242, 239, 234, 0.3);
+        display: flex;
+        align-items: center;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1100px) {
+        .wrap {
+          padding: 0 24px;
+        }
+        .blog-layout {
+          grid-template-columns: 1fr;
+        }
+        .sidebar {
+          position: static;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .posts-grid {
+          grid-template-columns: 1fr;
+        }
+        .section-head {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .foot {
+          grid-template-columns: 1fr;
+        }
+        .nav-logo-block,
+        .nav-cta {
+          padding: 0 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo-block">
+        <a href="/" class="logo-link">
+          <div class="logo">ANTAR<span class="logo-dot">·</span>PRERANA</div>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html#portfolio">Portfolio</a></li>
+        <li><a href="index.html#thesis">Thesis</a></li>
+        <li><a href="index.html#team">Team</a></li>
+        <li><a href="blog.html" class="active">Blog</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <a href="index.html#contact" class="nav-cta">Submit Pitch ↗</a>
+    </nav>
+
+    <section id="blog-grid" class="sec">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="slabel">All Articles</div>
+            <h2 class="sh2">LATEST FROM<br />THE BLOG.</h2>
+          </div>
+          <p class="section-note">
+            A dedicated Antarprerana blog page with a clean article grid and a
+            focused trending section, using the same brand language as the main
+            site.
+          </p>
+        </div>
+
+        <div class="blog-layout">
+          <div class="posts-grid">
+            <article class="post-card">
+              <div class="post-media">
+                <img
+                  src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+                  alt="AI and digital business workspace"
+                />
+              </div>
+              <div class="post-body">
+                <span class="pill">AI & Data</span>
+                <h3>
+                  Where Applied AI Can Create Real Enterprise Value in Nepal
+                </h3>
+                <div class="meta">Research Desk · 7 min read</div>
+                <p>
+                  Not every company needs a frontier model. Many can win by
+                  applying automation, structured workflows, and domain-specific
+                  intelligence.
+                </p>
+                <a href="#" class="link-arrow">Read More ↗</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <div class="post-media">
+                <img
+                  src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"
+                  alt="Finance planning and startup funding documents"
+                />
+              </div>
+              <div class="post-body">
+                <span class="pill">Capital</span>
+                <h3>
+                  How Founders Should Think About Dilution Before a Seed Round
+                </h3>
+                <div class="meta">Investment Team · 6 min read</div>
+                <p>
+                  A simpler framework for evaluating ownership, option pools,
+                  runway, and future financing flexibility.
+                </p>
+                <a href="#" class="link-arrow">Read More ↗</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <div class="post-media">
+                <img
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                  alt="Startup team discussing go to market strategy"
+                />
+              </div>
+              <div class="post-body">
+                <span class="pill">Growth</span>
+                <h3>
+                  Why Go-To-Market Discipline Beats Noise in Early Startup
+                  Growth
+                </h3>
+                <div class="meta">Operating Partners · 8 min read</div>
+                <p>
+                  Strong positioning, tight messaging, and repeatable sales
+                  habits usually outperform scattered experimentation.
+                </p>
+                <a href="#" class="link-arrow">Read More ↗</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <div class="post-media">
+                <img
+                  src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80"
+                  alt="City and startup ecosystem growth concept"
+                />
+              </div>
+              <div class="post-body">
+                <span class="pill">Ecosystem</span>
+                <h3>The Next Decade of Startup Infrastructure in Nepal</h3>
+                <div class="meta">Editorial Team · 9 min read</div>
+                <p>
+                  What needs to improve across capital, talent, policy, and
+                  founder support for the ecosystem to compound faster.
+                </p>
+                <a href="#" class="link-arrow">Read More ↗</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <div class="post-media">
+                <img
+                  src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+                  alt="Operations and company systems planning"
+                />
+              </div>
+              <div class="post-body">
+                <span class="pill">Operations</span>
+                <h3>
+                  The Hidden Systems Every Fast-Growing Company Must Build Early
+                </h3>
+                <div class="meta">Ops Office · 5 min read</div>
+                <p>
+                  Hiring pipelines, reporting rhythm, documentation, and process
+                  design become leverage much sooner than founders expect.
+                </p>
+                <a href="#" class="link-arrow">Read More ↗</a>
+              </div>
+            </article>
+
+            <article class="post-card">
+              <div class="post-media">
+                <img
+                  src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80"
+                  alt="Renewable energy and infrastructure project"
+                />
+              </div>
+              <div class="post-body">
+                <span class="pill">Climate</span>
+                <h3>
+                  Energy, Infrastructure, and the New Investable Layer in South
+                  Asia
+                </h3>
+                <div class="meta">Climate Partner · 7 min read</div>
+                <p>
+                  Why infrastructure-enabled businesses can create
+                  defensibility, long-term value, and regional expansion paths.
+                </p>
+                <a href="#" class="link-arrow">Read More ↗</a>
+              </div>
+            </article>
+          </div>
+
+          <aside class="sidebar">
+            <div class="side-box">
+              <h3 class="side-title">Trending Now</h3>
+
+              <article class="mini-post">
+                <span class="mini-cat">Founder Notes</span>
+                <h4>What Investors Actually Notice in the First 3 Slides</h4>
+                <p>
+                  Clarity, traction signal, timing, and proof of founder-market
+                  fit.
+                </p>
+              </article>
+
+              <article class="mini-post">
+                <span class="mini-cat">Research</span>
+                <h4>The Rise of Regional Digital Infrastructure</h4>
+                <p>
+                  Why backend platforms may become stronger moats than front-end
+                  brands.
+                </p>
+              </article>
+
+              <article class="mini-post">
+                <span class="mini-cat">Portfolio</span>
+                <h4>How a Rural Distribution Model Reached Breakout Growth</h4>
+                <p>
+                  A practical story about execution under local constraints.
+                </p>
+              </article>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="foot">
+        <div>
+          <div class="flogo">ANTAR<span class="hi">·</span>PRERANA</div>
+          <div class="fsub2">Igniting Nepal's entrepreneurial spirit</div>
+        </div>
+        <div class="flinks">
+          <a href="index.html">Home</a>
+          <a href="index.html#portfolio">Portfolio</a>
+          <a href="index.html#team">Team</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="fcopy">© 2026 Antarprerana Capital Pvt. Ltd.</div>
+      </div>
+    </footer>
+  </body>
+</html>

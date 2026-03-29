@@ -1,0 +1,2522 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Antarprerana</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg: #f5f8fc;
+        --bg-2: #eaf3fb;
+        --bg-3: #d7e8f7;
+        --ink: #0a1e46;
+        --ink-2: #17336b;
+        --ink-3: #4b6491;
+        --red: #1f4fa3;
+        --red-2: #25b4e4;
+        --red-dk: #143b82;
+        --sand: #8bcfea;
+        --sand-2: #5fafcf;
+        --border: rgba(10, 30, 70, 0.12);
+        --border-hi: rgba(10, 30, 70, 0.28);
+        --card: #ffffff;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Space Grotesk", sans-serif;
+        overflow-x: hidden;
+        cursor: default;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        cursor: pointer;
+        border: none;
+        background: none;
+      }
+      img {
+        display: block;
+        width: 100%;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--red);
+        border-radius: 0;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 200;
+        height: 60px;
+        display: flex;
+        align-items: stretch;
+        background: var(--ink);
+        border-bottom: 3px solid var(--red);
+      }
+      .nav-logo-block {
+        display: flex;
+        align-items: center;
+        padding: 0 32px;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .logo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        letter-spacing: 0.06em;
+        color: var(--bg);
+        line-height: 1;
+      }
+      .logo-dot {
+        color: var(--red-2);
+      }
+      .nav-links {
+        display: flex;
+        list-style: none;
+        align-items: stretch;
+        flex: 1;
+      }
+      .nav-links li {
+        display: flex;
+      }
+      .nav-links a {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.4);
+        transition:
+          color 0.2s,
+          background 0.2s;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .nav-links a:hover {
+        color: var(--bg);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .nav-cta {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.85rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0 32px;
+        display: flex;
+        align-items: center;
+        background: var(--red);
+        color: #fff;
+        margin-left: auto;
+        transition: background 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--red-2);
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        padding-top: 60px;
+        position: relative;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      .hero-main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: calc(100vh - 60px - 48px);
+      }
+      .hero-left {
+        padding: 80px 64px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-left::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 39px,
+          rgba(255, 255, 255, 0.025) 39px,
+          rgba(255, 255, 255, 0.025) 40px
+        );
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.35);
+        margin-bottom: 56px;
+        opacity: 0;
+        animation: up 0.6s 0.1s ease forwards;
+      }
+      .bdot {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--red-2);
+        animation: pulse 1.8s ease infinite;
+        box-shadow: 0 0 8px var(--red);
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.3;
+          transform: scale(0.6);
+        }
+      }
+      .hero-h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(5rem, 9vw, 10rem);
+        line-height: 0.9;
+        letter-spacing: 0.03em;
+        color: var(--bg);
+        margin-bottom: 48px;
+        opacity: 0;
+        animation: up 0.7s 0.22s ease forwards;
+      }
+      .hero-h1 .red {
+        color: var(--red);
+      }
+      .hero-h1 .stroke {
+        -webkit-text-stroke: 1.5px var(--bg);
+        color: transparent;
+      }
+      .hero-p {
+        font-size: 0.95rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: rgba(242, 239, 234, 0.45);
+        max-width: 420px;
+        margin-bottom: 52px;
+        opacity: 0;
+        animation: up 0.7s 0.36s ease forwards;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 0;
+        align-items: center;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: up 0.7s 0.5s ease forwards;
+      }
+      .btn-primary {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 16px 36px;
+        background: var(--red);
+        color: #fff;
+        display: inline-block;
+        transition: background 0.2s;
+        border: 2px solid var(--red);
+      }
+      .btn-primary:hover {
+        background: var(--red-2);
+        border-color: var(--red-2);
+      }
+      .btn-outline {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 16px 36px;
+        border: 2px solid rgba(255, 255, 255, 0.15);
+        color: rgba(242, 239, 234, 0.4);
+        display: inline-block;
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        color: var(--bg);
+      }
+
+      .hero-right {
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100%;
+      }
+      .hero-right-image {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+      .hero-right-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(10%) contrast(1.05) brightness(0.72);
+      }
+      .hero-right-bg {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(10, 30, 70, 0.88) 0%,
+          rgba(31, 79, 163, 0.68) 55%,
+          rgba(37, 180, 228, 0.42) 100%
+        );
+        z-index: 1;
+      }
+      .hero-big-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 18vw;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.05);
+        letter-spacing: 0.02em;
+        user-select: none;
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        z-index: 2;
+      }
+      .hero-stats {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        padding: 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .hstat {
+        background: rgba(10, 30, 70, 0.92);
+        padding: 36px 28px;
+      }
+      .hstat-val {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.2rem;
+        color: var(--bg);
+        line-height: 1;
+        margin-bottom: 6px;
+      }
+      .hstat-val .r {
+        color: var(--red-2);
+      }
+      .hstat-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.3);
+      }
+
+      /* TICKER */
+      .ticker {
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+        height: 48px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        background: var(--red);
+      }
+      .ticker-track {
+        display: flex;
+        animation: tick 32s linear infinite;
+        white-space: nowrap;
+      }
+      .tick-item {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 0 24px;
+        border-right: 1px solid rgba(255, 255, 255, 0.15);
+        display: flex;
+        align-items: center;
+        height: 48px;
+        gap: 8px;
+      }
+      .tick-item em {
+        color: #fff;
+        font-style: normal;
+        font-weight: 500;
+      }
+      @keyframes tick {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      @keyframes up {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* NUMBERS */
+      #numbers {
+        background: var(--bg-2);
+        border-top: 3px solid var(--red);
+        border-bottom: 1px solid var(--border);
+        padding: 0;
+      }
+      .num-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        background: var(--border-hi);
+      }
+      .num-cell {
+        background: var(--bg-2);
+        padding: 52px 36px;
+        text-align: left;
+        border-right: 1px solid var(--border);
+        transition: background 0.2s;
+      }
+      .num-cell:last-child {
+        border-right: none;
+      }
+      .num-cell:hover {
+        background: var(--card);
+      }
+      .num-val {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.8rem, 4vw, 4.5rem);
+        line-height: 1;
+        margin-bottom: 8px;
+        color: var(--ink);
+      }
+      .num-val .r {
+        color: var(--red);
+      }
+      .num-label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--ink-3);
+      }
+
+      /* COMMON */
+      .sec {
+        padding: 120px 0;
+      }
+      .wrap {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 64px;
+      }
+      .rule {
+        width: 100%;
+        height: 1px;
+        background: var(--border-hi);
+      }
+      .slabel {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .slabel::before {
+        content: "▶";
+        font-size: 0.5rem;
+      }
+      .sh2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 5vw, 5.5rem);
+        line-height: 0.92;
+        letter-spacing: 0.04em;
+        color: var(--ink);
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 32px;
+        margin-bottom: 42px;
+      }
+      .section-note {
+        max-width: 380px;
+        font-size: 0.9rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--ink-3);
+      }
+
+      /* PORTFOLIO */
+      #portfolio {
+        background: var(--bg);
+      }
+      .port-hdr {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 48px;
+        gap: 40px;
+      }
+      .port-sub {
+        font-size: 0.9rem;
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--ink-3);
+        max-width: 340px;
+      }
+      .logo-wall {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        background: var(--ink);
+        border: 3px solid var(--ink);
+        margin-bottom: 28px;
+        overflow: hidden;
+      }
+      .lc {
+        background: var(--ink);
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        transition: background 0.2s;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+      .lc::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--red-2);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
+      }
+      .lc:hover::before {
+        transform: scaleX(1);
+      }
+      .lc:hover {
+        background: #123777;
+      }
+      .lc-name {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.2);
+        transition: color 0.2s;
+      }
+      .lc:hover .lc-name {
+        color: rgba(242, 239, 234, 0.95);
+      }
+      .ptags {
+        display: flex;
+        gap: 0;
+        flex-wrap: wrap;
+        border: 1px solid var(--border-hi);
+      }
+      .ptag {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 8px 18px;
+        border-right: 1px solid var(--border-hi);
+        color: var(--ink-3);
+        background: var(--card);
+        transition:
+          background 0.2s,
+          color 0.2s;
+      }
+      .ptag:hover {
+        background: var(--red);
+        color: #fff;
+      }
+
+      /* VISUAL STRIP */
+      #visual-strip {
+        background: var(--bg);
+      }
+      .visual-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .visual-card {
+        background: var(--card);
+        border: 1px solid var(--border-hi);
+        overflow: hidden;
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s;
+      }
+      .visual-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(23, 51, 107, 0.08);
+      }
+      .visual-media {
+        height: 260px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      .visual-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+      .visual-card:hover .visual-media img {
+        transform: scale(1.05);
+      }
+      .visual-body {
+        padding: 22px;
+      }
+      .visual-body h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .visual-body p {
+        font-size: 0.84rem;
+        line-height: 1.8;
+        color: var(--ink-3);
+      }
+
+      /* THESIS */
+      #thesis {
+        background: var(--bg-2);
+      }
+      .thesis-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .thesis-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+        margin-top: 40px;
+        border: 1px solid var(--border-hi);
+      }
+      .tc {
+        background: var(--card);
+        padding: 32px;
+        border-right: 1px solid var(--border-hi);
+        border-bottom: 1px solid var(--border-hi);
+        position: relative;
+        overflow: hidden;
+        transition: background 0.25s;
+      }
+      .tc:hover {
+        background: var(--ink);
+        cursor: default;
+      }
+      .tc:hover h3,
+      .tc:hover p {
+        color: var(--bg);
+      }
+      .tc:hover h3 {
+        color: var(--red-2);
+      }
+      .tc .ico {
+        font-size: 1.6rem;
+        margin-bottom: 14px;
+        display: block;
+        transition: filter 0.25s;
+      }
+      .tc h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 8px;
+        transition: color 0.25s;
+      }
+      .tc p {
+        font-size: 0.82rem;
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--ink-3);
+        transition: color 0.25s;
+      }
+
+      /* TEAM */
+      #team {
+        background: var(--bg);
+      }
+      .team-hdr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 0;
+      }
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border: 1px solid var(--border-hi);
+        border-top: 3px solid var(--ink);
+        margin-top: 48px;
+      }
+      .mc {
+        background: var(--card);
+        padding: 36px 28px;
+        border-right: 1px solid var(--border-hi);
+        border-bottom: 1px solid var(--border-hi);
+        transition: background 0.25s;
+        position: relative;
+        overflow: hidden;
+      }
+      .mc:hover {
+        background: var(--bg-2);
+      }
+      .mc-av {
+        width: 56px;
+        height: 56px;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 18px;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.6rem;
+        color: var(--red-2);
+      }
+      .mc h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 2px;
+      }
+      .mc-role {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 10px;
+      }
+      .mc-bio {
+        font-size: 0.8rem;
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--ink-3);
+      }
+      .mc-tag {
+        display: inline-block;
+        margin-top: 12px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.55rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 3px 10px;
+        background: var(--ink);
+        color: var(--sand);
+      }
+
+      /* BLOG SECTION */
+      #blog-section {
+        background: var(--bg-2);
+      }
+      .posts-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+      .post-card,
+      .gallery-card {
+        background: var(--card);
+        border: 1px solid var(--border-hi);
+        transition:
+          transform 0.22s,
+          box-shadow 0.22s,
+          background 0.22s;
+      }
+      .post-card:hover,
+      .gallery-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 40px rgba(23, 51, 107, 0.08);
+      }
+      .post-card {
+        overflow: hidden;
+      }
+      .post-media {
+        height: 240px;
+        overflow: hidden;
+        position: relative;
+        background: var(--ink);
+      }
+      .post-media img {
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+      .post-card:hover .post-media img {
+        transform: scale(1.05);
+      }
+      .post-body {
+        padding: 26px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.56rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 8px 12px;
+        background: var(--bg-2);
+        color: var(--red);
+        margin-bottom: 18px;
+      }
+      .post-body h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.12;
+        margin-bottom: 12px;
+      }
+      .meta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        color: var(--sand-2);
+        margin-bottom: 16px;
+      }
+      .post-body p {
+        font-size: 0.84rem;
+        line-height: 1.8;
+        color: var(--ink-3);
+        margin-bottom: 16px;
+      }
+      .link-arrow {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+      .link-arrow:hover {
+        color: var(--red-2);
+      }
+      .section-link-row {
+        margin-top: 28px;
+        display: flex;
+        justify-content: flex-end;
+      }
+      .section-link {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--red);
+      }
+      .section-link:hover {
+        color: var(--red-2);
+      }
+
+      /* GALLERY SECTION */
+      #gallery-section {
+        background: var(--bg);
+      }
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+      .gallery-card {
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .gallery-media {
+        height: 260px;
+        overflow: hidden;
+        background: var(--ink);
+      }
+      .gallery-media img {
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.45s ease;
+      }
+      .gallery-card:hover .gallery-media img {
+        transform: scale(1.05);
+      }
+      .gallery-body {
+        padding: 20px 22px;
+      }
+      .gallery-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.18rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        line-height: 1.1;
+        margin-bottom: 8px;
+      }
+      .gallery-meta {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        color: var(--sand-2);
+        text-transform: uppercase;
+      }
+
+      /* VALUES */
+      #values {
+        background: var(--ink);
+      }
+      .val-split {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+      }
+      .val-sticky {
+        position: sticky;
+        top: 80px;
+      }
+      .val-big {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(4rem, 6vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: 0.04em;
+        color: var(--bg);
+        margin-bottom: 28px;
+      }
+      .val-big .r {
+        color: var(--red-2);
+      }
+      .val-big .stroke {
+        -webkit-text-stroke: 1px var(--bg);
+        color: transparent;
+      }
+      .val-sub {
+        font-size: 0.9rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: rgba(242, 239, 234, 0.55);
+        max-width: 380px;
+        margin-bottom: 36px;
+      }
+      .np-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(37, 180, 228, 0.12);
+        border: 1px solid rgba(37, 180, 228, 0.35);
+        padding: 14px 18px;
+      }
+      .np-badge p {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.65);
+      }
+      .val-list {
+        display: flex;
+        flex-direction: column;
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .val-row {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+        padding: 32px 0 32px 32px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        opacity: 0;
+        transform: translateX(20px);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .val-row.visible {
+        opacity: 1;
+        transform: none;
+      }
+      .val-row:hover {
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .vnum {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        color: var(--red-2);
+        padding-top: 0;
+        flex-shrink: 0;
+        min-width: 40px;
+        line-height: 1;
+      }
+      .val-row h4 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--bg);
+        margin-bottom: 6px;
+      }
+      .val-row p {
+        font-size: 0.82rem;
+        font-weight: 300;
+        line-height: 1.75;
+        color: rgba(242, 239, 234, 0.55);
+      }
+
+      /* APPROACH */
+      #approach {
+        background: var(--bg-2);
+      }
+      .appr-hdr {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: end;
+        margin-bottom: 0;
+        padding-bottom: 48px;
+        border-bottom: 1px solid var(--border-hi);
+      }
+      .steps {
+        display: flex;
+        flex-direction: column;
+      }
+      .step {
+        display: grid;
+        grid-template-columns: 80px 1fr auto;
+        align-items: center;
+        gap: 24px;
+        padding: 28px 0;
+        border-bottom: 1px solid var(--border-hi);
+        transition: padding-left 0.2s;
+        cursor: default;
+      }
+      .step:hover {
+        padding-left: 16px;
+        background: rgba(31, 79, 163, 0.04);
+      }
+      .step:hover .step-title {
+        color: var(--red);
+      }
+      .sn {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.2rem;
+        letter-spacing: 0.04em;
+        color: var(--bg-3);
+        transition: color 0.2s;
+        line-height: 1;
+      }
+      .step:hover .sn {
+        color: var(--ink);
+      }
+      .step-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 1.1rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 4px;
+        transition: color 0.2s;
+      }
+      .step-desc {
+        font-size: 0.82rem;
+        font-weight: 300;
+        line-height: 1.7;
+        color: var(--ink-3);
+      }
+      .stag {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        background: var(--ink);
+        color: var(--bg);
+        align-self: flex-start;
+        white-space: nowrap;
+      }
+
+      /* LIGHTBOX */
+      .lightbox {
+        position: fixed;
+        inset: 0;
+        background: rgba(10, 30, 70, 0.82);
+        backdrop-filter: blur(8px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 30px;
+        opacity: 0;
+        visibility: hidden;
+        transition:
+          opacity 0.25s ease,
+          visibility 0.25s ease;
+        z-index: 500;
+      }
+      .lightbox.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .lightbox-inner {
+        width: min(1100px, 100%);
+        background: var(--card);
+        border: 1px solid var(--border-hi);
+        position: relative;
+        overflow: hidden;
+      }
+      .lightbox-close {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 46px;
+        height: 46px;
+        border: none;
+        background: var(--ink);
+        color: #fff;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 2;
+        transition: background 0.2s;
+      }
+      .lightbox-close:hover {
+        background: var(--red);
+      }
+      .lightbox-image-wrap {
+        background: #dfeaf7;
+        max-height: 72vh;
+        overflow: hidden;
+      }
+      .lightbox-image-wrap img {
+        width: 100%;
+        height: 100%;
+        max-height: 72vh;
+        object-fit: contain;
+        background: #dfeaf7;
+      }
+      .lightbox-content {
+        padding: 24px 28px 26px;
+      }
+      .lightbox-title {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--ink);
+        margin-bottom: 8px;
+      }
+      .lightbox-caption {
+        font-size: 0.92rem;
+        line-height: 1.8;
+        color: var(--ink-3);
+      }
+
+      /* CTA */
+      #cta {
+        background: linear-gradient(135deg, #1f4fa3 0%, #25b4e4 100%);
+        padding: 100px 0;
+        position: relative;
+        overflow: hidden;
+      }
+      #cta::before {
+        content: "INVEST";
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 20vw;
+        color: rgba(255, 255, 255, 0.08);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        white-space: nowrap;
+        letter-spacing: 0.1em;
+        pointer-events: none;
+        line-height: 1;
+      }
+      .cta-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 64px;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+      .cta-h2 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(4rem, 7vw, 7rem);
+        line-height: 0.9;
+        letter-spacing: 0.04em;
+        color: #fff;
+      }
+      .cta-h2 .stroke {
+        -webkit-text-stroke: 2px #fff;
+        color: transparent;
+      }
+      .cta-sub {
+        font-size: 0.9rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.82);
+        max-width: 360px;
+        margin-bottom: 32px;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 0;
+        flex-direction: column;
+      }
+      .bw.solid {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 16px 36px;
+        background: #fff;
+        color: var(--red);
+        transition: background 0.2s;
+        display: inline-block;
+        white-space: nowrap;
+        margin-bottom: 12px;
+      }
+      .bw.solid:hover {
+        background: var(--bg);
+      }
+      .bw.ghost {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 600;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 16px 36px;
+        border: 2px solid rgba(255, 255, 255, 0.45);
+        color: rgba(255, 255, 255, 0.82);
+        transition: all 0.2s;
+        display: inline-block;
+      }
+      .bw.ghost:hover {
+        border-color: #fff;
+        color: #fff;
+      }
+
+      /* CONTACT */
+      #contact {
+        background: var(--bg);
+      }
+      .contact-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: start;
+      }
+      .cm-list {
+        margin-top: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .cm-list > div {
+        padding: 16px 0;
+        border-bottom: 1px solid var(--border-hi);
+        display: flex;
+        gap: 40px;
+        align-items: baseline;
+      }
+      .cml {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sand-2);
+        flex-shrink: 0;
+        width: 140px;
+      }
+      .cmv {
+        font-size: 0.9rem;
+        font-weight: 300;
+        color: var(--ink-2);
+      }
+      .cf {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--border-hi);
+      }
+      .f2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      .fr {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border-bottom: 1px solid var(--border-hi);
+      }
+      label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--sand-2);
+        padding: 12px 16px 4px;
+        border-right: 1px solid var(--border);
+        display: block;
+      }
+      input,
+      select,
+      textarea {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 300;
+        padding: 8px 16px 14px;
+        background: transparent;
+        border: none;
+        border-right: 1px solid var(--border-hi);
+        color: var(--ink);
+        outline: none;
+        appearance: none;
+        width: 100%;
+      }
+      input:focus,
+      select:focus,
+      textarea:focus {
+        background: rgba(31, 79, 163, 0.03);
+      }
+      .fr:last-of-type input,
+      .fr:last-of-type select,
+      .fr:last-of-type textarea {
+        border-right: none;
+      }
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .fsub {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 18px;
+        background: var(--ink);
+        color: var(--bg);
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        transition: background 0.2s;
+      }
+      .fsub:hover {
+        background: var(--red);
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: #7a8fb7;
+      }
+
+      /* FOOTER */
+      footer {
+        background: var(--ink);
+        padding: 0;
+        border-top: 3px solid var(--red-2);
+      }
+      .foot {
+        display: grid;
+        grid-template-columns: 1fr auto auto;
+        align-items: stretch;
+        gap: 0;
+        border-bottom: none;
+      }
+      .foot > * {
+        padding: 40px 48px;
+        border-right: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .foot > *:last-child {
+        border-right: none;
+      }
+      .flogo {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.8rem;
+        color: var(--bg);
+        letter-spacing: 0.06em;
+      }
+      .flogo .hi {
+        color: var(--red-2);
+      }
+      .fsub2 {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.3);
+        margin-top: 6px;
+      }
+      .flinks {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .flinks a {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(242, 239, 234, 0.35);
+        transition: color 0.2s;
+      }
+      .flinks a:hover {
+        color: var(--red-2);
+      }
+      .fcopy {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.58rem;
+        letter-spacing: 0.06em;
+        color: rgba(242, 239, 234, 0.3);
+        display: flex;
+        align-items: center;
+      }
+
+      /* REVEAL */
+      .reveal,
+      .val-row,
+      .num-cell,
+      .mc,
+      .tc,
+      .lc {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.5s,
+          transform 0.5s;
+      }
+      .reveal.visible,
+      .val-row.visible,
+      .num-cell.visible,
+      .mc.visible,
+      .tc.visible,
+      .lc.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1100px) {
+        .wrap {
+          padding: 0 24px;
+        }
+        .hero-main,
+        .thesis-layout,
+        .val-split,
+        .team-hdr,
+        .appr-hdr,
+        .contact-layout {
+          grid-template-columns: 1fr;
+        }
+        .hero-right {
+          display: none;
+        }
+        .hero-left {
+          padding: 60px 24px;
+        }
+        .num-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .thesis-grid {
+          grid-template-columns: 1fr;
+        }
+        .team-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .visual-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .gallery-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .logo-wall {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .posts-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .foot {
+          grid-template-columns: 1fr;
+        }
+        .cta-wrap {
+          flex-direction: column;
+          gap: 40px;
+        }
+      }
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .posts-grid,
+        .visual-grid {
+          grid-template-columns: 1fr;
+        }
+        .section-head,
+        .port-hdr {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 700px) {
+        .team-grid,
+        .gallery-grid,
+        .num-grid,
+        .f2 {
+          grid-template-columns: 1fr;
+        }
+        .logo-wall {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cta-wrap {
+          padding: 0 24px;
+        }
+        .lightbox {
+          padding: 16px;
+        }
+        .lightbox-content {
+          padding: 18px 18px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-logo-block">
+        <a href="/" class="logo-link">
+          <div class="logo">ANTAR<span class="logo-dot">·</span>PRERANA</div>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#thesis">Thesis</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#contact" class="nav-cta">Submit Pitch ↗</a>
+    </nav>
+
+    <section id="hero">
+      <div class="hero-main">
+        <div class="hero-left">
+          <div class="hero-badge">
+            <span class="bdot"></span>Venture Capital · Nepal · Est. 2021
+          </div>
+          <h1 class="hero-h1">
+            WE<br /><span class="red">BACK</span><br />THE<br /><span
+              class="stroke"
+              >FUTURE.</span
+            >
+          </h1>
+          <p class="hero-p">
+            Seed to Series A. $500K–$5M cheques. Deep operational expertise
+            built from decades of founding, scaling, and exiting across South
+            Asia and beyond.
+          </p>
+          <div class="hero-btns">
+            <a href="#contact" class="btn-primary">Submit Your Pitch →</a>
+            <a href="#portfolio" class="btn-outline">View Portfolio</a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-right-image">
+            <img
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"
+              alt="Startup team collaboration"
+            />
+          </div>
+          <div class="hero-right-bg"></div>
+          <div class="hero-big-num">47</div>
+          <div class="hero-stats">
+            <div class="hstat">
+              <div class="hstat-val">$47<span class="r">M</span></div>
+              <div class="hstat-label">Capital Deployed</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">23</div>
+              <div class="hstat-label">Portfolio Cos.</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">3.4<span class="r">×</span></div>
+              <div class="hstat-label">Avg. MOIC</div>
+            </div>
+            <div class="hstat">
+              <div class="hstat-val">72<span class="r">h</span></div>
+              <div class="hstat-label">Response Time</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticker">
+        <div class="ticker-track" id="tickerTrack"></div>
+      </div>
+    </section>
+
+    <div id="numbers">
+      <div class="num-grid">
+        <div class="num-cell">
+          <div class="num-val">$47<span class="r">M</span>+</div>
+          <div class="num-label">Capital Deployed</div>
+        </div>
+        <div class="num-cell">
+          <div class="num-val">23</div>
+          <div class="num-label">Portfolio Companies</div>
+        </div>
+        <div class="num-cell">
+          <div class="num-val">3.4<span class="r">×</span></div>
+          <div class="num-label">Avg. MOIC</div>
+        </div>
+        <div class="num-cell">
+          <div class="num-val">8</div>
+          <div class="num-label">Unicorn-track Cos.</div>
+        </div>
+      </div>
+    </div>
+
+    <section id="portfolio" class="sec">
+      <div class="wrap">
+        <div class="port-hdr">
+          <div>
+            <div class="slabel reveal">Portfolio</div>
+            <h2 class="sh2 reveal">COMPANIES<br />WE BACK.</h2>
+          </div>
+          <p class="port-sub reveal">
+            Backing category-defining companies across Nepal's most vital
+            sectors — from day one to exit.
+          </p>
+        </div>
+
+        <div class="logo-wall reveal">
+          <div class="lc"><div class="lc-name">SUNDHARA</div></div>
+          <div class="lc"><div class="lc-name">KATHPAY</div></div>
+          <div class="lc"><div class="lc-name">YETI AI</div></div>
+          <div class="lc"><div class="lc-name">HIMALMED</div></div>
+          <div class="lc"><div class="lc-name">AGRONEPAL</div></div>
+          <div class="lc"><div class="lc-name">ROUTEMANDU</div></div>
+          <div class="lc"><div class="lc-name">CLOUDHIMAL</div></div>
+          <div class="lc"><div class="lc-name">GREENGRID</div></div>
+          <div class="lc"><div class="lc-name">PASALLINK</div></div>
+          <div class="lc"><div class="lc-name">NEPALSTACK</div></div>
+        </div>
+
+        <div class="ptags reveal">
+          <div class="ptag">Fintech</div>
+          <div class="ptag">AI / ML</div>
+          <div class="ptag">Clean Energy</div>
+          <div class="ptag">Health Tech</div>
+          <div class="ptag">AgriTech</div>
+          <div class="ptag">Logistics</div>
+          <div class="ptag">B2B SaaS</div>
+          <div class="ptag">Infrastructure</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="visual-strip" class="sec">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="slabel reveal">Visual Story</div>
+            <h2 class="sh2 reveal">BUILDING<br />WITH CLARITY.</h2>
+          </div>
+          <p class="section-note reveal">
+            A stronger visual layer for the main page while keeping the same
+            structured Antarprerana design language.
+          </p>
+        </div>
+
+        <div class="visual-grid">
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+                alt="Founder and startup workspace"
+              />
+            </div>
+            <div class="visual-body">
+              <h3>Founder Focus</h3>
+              <p>
+                Execution, market timing, and product clarity at the earliest
+                stages.
+              </p>
+            </div>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Team meeting and strategy planning"
+              />
+            </div>
+            <div class="visual-body">
+              <h3>Operator Mindset</h3>
+              <p>
+                Hands-on support across product, growth, and operating
+                discipline.
+              </p>
+            </div>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"
+                alt="Investment and financial planning"
+              />
+            </div>
+            <div class="visual-body">
+              <h3>Capital With Context</h3>
+              <p>
+                Long-term conviction backed by structure, judgment, and speed.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="thesis" class="sec">
+      <div class="wrap">
+        <div class="thesis-layout">
+          <div>
+            <div class="slabel reveal">Investment Thesis</div>
+            <h2 class="sh2 reveal">WHAT WE<br />INVEST IN.</h2>
+            <p
+              class="reveal"
+              style="
+                font-size: 0.9rem;
+                font-weight: 300;
+                line-height: 1.8;
+                color: var(--ink-3);
+                margin-top: 20px;
+                max-width: 380px;
+              "
+            >
+              We write $500K–$5M cheques at pre-seed to Series A, doubling down
+              on outliers at every stage.
+            </p>
+          </div>
+
+          <div class="thesis-grid reveal">
+            <div class="tc">
+              <span class="ico">⚡</span>
+              <h3>Clean Energy</h3>
+              <p>
+                Hydropower, solar, and storage tech powering Nepal's
+                infrastructure-first future.
+              </p>
+            </div>
+            <div class="tc">
+              <span class="ico">🤖</span>
+              <h3>AI & Deep Tech</h3>
+              <p>
+                ML and computer vision solving uniquely South Asian problems at
+                scale.
+              </p>
+            </div>
+            <div class="tc">
+              <span class="ico">💳</span>
+              <h3>Fintech</h3>
+              <p>
+                Digital payments and micro-lending for Nepal's unbanked 40%.
+              </p>
+            </div>
+            <div class="tc">
+              <span class="ico">🌾</span>
+              <h3>AgriTech & Health</h3>
+              <p>
+                Precision agriculture and telemedicine for rural communities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="team" class="sec">
+      <div class="wrap">
+        <div class="team-hdr">
+          <div>
+            <div class="slabel reveal">Investment Team</div>
+            <h2 class="sh2 reveal">OPERATORS.<br />NOT SPECTATORS.</h2>
+          </div>
+          <p
+            class="reveal"
+            style="
+              font-size: 0.9rem;
+              font-weight: 300;
+              line-height: 1.8;
+              color: var(--ink-3);
+            "
+          >
+            Every partner has founded, scaled, or exited a company. We know what
+            3 AM product crises feel like.
+          </p>
+        </div>
+
+        <div class="team-grid">
+          <div class="mc reveal">
+            <div class="mc-av">A</div>
+            <h3>Aarav Shrestha</h3>
+            <div class="mc-role">Managing Partner</div>
+            <p class="mc-bio">
+              Ex-founder KathmanduPay. 18 yrs FinTech across India, Singapore &
+              US. Led $200M+ in exits.
+            </p>
+            <span class="mc-tag">Fintech · Strategy</span>
+          </div>
+          <div class="mc reveal">
+            <div class="mc-av">P</div>
+            <h3>Priya Tamang</h3>
+            <div class="mc-role">Partner, Climate</div>
+            <p class="mc-bio">
+              PhD MIT Environmental Eng. Built Nepal's first utility-scale solar
+              project from scratch.
+            </p>
+            <span class="mc-tag">CleanTech · Energy</span>
+          </div>
+          <div class="mc reveal">
+            <div class="mc-av">R</div>
+            <h3>Roshan Karki</h3>
+            <div class="mc-role">Partner, Health & Agri</div>
+            <p class="mc-bio">
+              Ex-McKinsey. Former COO HimalayanHealth. Rural delivery expert
+              across South Asia.
+            </p>
+            <span class="mc-tag">HealthTech · Ops</span>
+          </div>
+          <div class="mc reveal">
+            <div class="mc-av">S</div>
+            <h3>Sita Adhikari</h3>
+            <div class="mc-role">Principal</div>
+            <p class="mc-bio">
+              Former investment banker HSBC HK. Leads sourcing and portfolio
+              analytics for early bets.
+            </p>
+            <span class="mc-tag">Early Stage · M&A</span>
+          </div>
+          <div class="mc reveal">
+            <div class="mc-av">K</div>
+            <h3>Kamal Poudel</h3>
+            <div class="mc-role">Operating Partner</div>
+            <p class="mc-bio">
+              3 exits as founder. Embeds with portfolio companies to accelerate
+              go-to-market execution.
+            </p>
+            <span class="mc-tag">Growth · GTM</span>
+          </div>
+          <div class="mc reveal">
+            <div class="mc-av">M</div>
+            <h3>Maya Gurung</h3>
+            <div class="mc-role">Venture Associate</div>
+            <p class="mc-bio">
+              IIT Delhi. Previously Sequoia India. Focuses on deep tech, AI/ML,
+              and digital infrastructure.
+            </p>
+            <span class="mc-tag">AI · Deep Tech</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="blog-section" class="sec">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="slabel reveal">Featured Blog</div>
+            <h2 class="sh2 reveal">LATEST<br />INSIGHTS.</h2>
+          </div>
+          <p class="section-note reveal">
+            A selection of key research, founder notes, and market intelligence
+            from Antarprerana.
+          </p>
+        </div>
+
+        <div class="posts-grid">
+          <article class="post-card reveal">
+            <div class="post-media">
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+                alt="AI and digital business workspace"
+              />
+            </div>
+            <div class="post-body">
+              <span class="pill">AI & Data</span>
+              <h3>
+                Where Applied AI Can Create Real Enterprise Value in Nepal
+              </h3>
+              <div class="meta">Research Desk · 7 min read</div>
+              <p>
+                Not every company needs a frontier model. Many can win by
+                applying automation, structured workflows, and domain-specific
+                intelligence.
+              </p>
+              <a href="blog.html" class="link-arrow">View All Blogs ↗</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal">
+            <div class="post-media">
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"
+                alt="Finance planning and startup funding documents"
+              />
+            </div>
+            <div class="post-body">
+              <span class="pill">Capital</span>
+              <h3>
+                How Founders Should Think About Dilution Before a Seed Round
+              </h3>
+              <div class="meta">Investment Team · 6 min read</div>
+              <p>
+                A simpler framework for evaluating ownership, option pools,
+                runway, and future financing flexibility.
+              </p>
+              <a href="blog.html" class="link-arrow">View All Blogs ↗</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal">
+            <div class="post-media">
+              <img
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80"
+                alt="Startup team discussing strategy"
+              />
+            </div>
+            <div class="post-body">
+              <span class="pill">Growth</span>
+              <h3>
+                Why Go-To-Market Discipline Beats Noise in Early Startup Growth
+              </h3>
+              <div class="meta">Operating Partners · 8 min read</div>
+              <p>
+                Strong positioning, tight messaging, and repeatable sales habits
+                usually outperform scattered experimentation.
+              </p>
+              <a href="blog.html" class="link-arrow">View All Blogs ↗</a>
+            </div>
+          </article>
+
+          <article class="post-card reveal">
+            <div class="post-media">
+              <img
+                src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80"
+                alt="City and startup ecosystem growth concept"
+              />
+            </div>
+            <div class="post-body">
+              <span class="pill">Ecosystem</span>
+              <h3>The Next Decade of Startup Infrastructure in Nepal</h3>
+              <div class="meta">Editorial Team · 9 min read</div>
+              <p>
+                What needs to improve across capital, talent, policy, and
+                founder support for the ecosystem to compound faster.
+              </p>
+              <a href="blog.html" class="link-arrow">View All Blogs ↗</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-link-row">
+          <a href="blog.html" class="section-link"
+            >Open Dedicated Blog Page ↗</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="gallery-section" class="sec">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <div class="slabel reveal">Gallery Preview</div>
+            <h2 class="sh2 reveal">VISUAL<br />HIGHLIGHTS.</h2>
+          </div>
+          <p class="section-note reveal">
+            A quick preview of selected moments and visuals from Antarprerana.
+          </p>
+        </div>
+
+        <div class="gallery-grid">
+          <article
+            class="gallery-card reveal"
+            data-title="Founder Strategy Session"
+            data-caption="A look at focused team planning, investor preparation, and product strategy conversations."
+            data-image="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1400&q=80"
+          >
+            <div class="gallery-media">
+              <img
+                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+                alt="Founder Strategy Session"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3 class="gallery-title">Founder Strategy Session</h3>
+              <div class="gallery-meta">Open Image</div>
+            </div>
+          </article>
+
+          <article
+            class="gallery-card reveal"
+            data-title="Startup Team Collaboration"
+            data-caption="Creative collaboration and fast decision-making inside an early-stage company environment."
+            data-image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1400&q=80"
+          >
+            <div class="gallery-media">
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80"
+                alt="Startup Team Collaboration"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3 class="gallery-title">Startup Team Collaboration</h3>
+              <div class="gallery-meta">Open Image</div>
+            </div>
+          </article>
+
+          <article
+            class="gallery-card reveal"
+            data-title="Investment Discussion"
+            data-caption="A visual representing capital conversations, investor diligence, and company-building decisions."
+            data-image="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80"
+          >
+            <div class="gallery-media">
+              <img
+                src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1200&q=80"
+                alt="Investment Discussion"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3 class="gallery-title">Investment Discussion</h3>
+              <div class="gallery-meta">Open Image</div>
+            </div>
+          </article>
+
+          <article
+            class="gallery-card reveal"
+            data-title="Growth Planning Board"
+            data-caption="Teams aligning around process, planning, and disciplined growth."
+            data-image="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80"
+          >
+            <div class="gallery-media">
+              <img
+                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80"
+                alt="Growth Planning Board"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3 class="gallery-title">Growth Planning Board</h3>
+              <div class="gallery-meta">Open Image</div>
+            </div>
+          </article>
+
+          <article
+            class="gallery-card reveal"
+            data-title="Infrastructure View"
+            data-caption="A visual aligned with scale, systems, and regional opportunity."
+            data-image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=80"
+          >
+            <div class="gallery-media">
+              <img
+                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80"
+                alt="Infrastructure View"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3 class="gallery-title">Infrastructure View</h3>
+              <div class="gallery-meta">Open Image</div>
+            </div>
+          </article>
+
+          <article
+            class="gallery-card reveal"
+            data-title="Clean Energy Landscape"
+            data-caption="A clean energy perspective tied to long-term infrastructure and climate investment."
+            data-image="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1400&q=80"
+          >
+            <div class="gallery-media">
+              <img
+                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=80"
+                alt="Clean Energy Landscape"
+              />
+            </div>
+            <div class="gallery-body">
+              <h3 class="gallery-title">Clean Energy Landscape</h3>
+              <div class="gallery-meta">Open Image</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="section-link-row">
+          <a href="gallery.html" class="section-link"
+            >Open Dedicated Gallery Page ↗</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="values" class="sec">
+      <div class="wrap">
+        <div class="val-split">
+          <div class="val-sticky">
+            <div class="slabel reveal" style="color: var(--red-2)">
+              Our Values
+            </div>
+            <div class="val-big reveal">
+              BUILT<br />ON <span class="r">CON-</span><br /><span
+                class="stroke"
+                >VICTION.</span
+              >
+            </div>
+            <p class="val-sub reveal">
+              We don't chase trends. We invest in people building what the world
+              needs — even before it realises it.
+            </p>
+            <div class="np-badge reveal">
+              <span style="font-size: 1.1rem">🏔</span>
+              <p>Rooted in Nepal. Reaching the world.</p>
+            </div>
+          </div>
+
+          <div class="val-list">
+            <div class="val-row">
+              <div class="vnum">01</div>
+              <div>
+                <h4>Integrity Above All</h4>
+                <p>
+                  Every commitment we make to founders, LPs, and communities is
+                  kept. We operate with radical transparency.
+                </p>
+              </div>
+            </div>
+            <div class="val-row">
+              <div class="vnum">02</div>
+              <div>
+                <h4>Founder First</h4>
+                <p>
+                  Founders are the architects of change. Our role is to amplify
+                  their vision, not override it.
+                </p>
+              </div>
+            </div>
+            <div class="val-row">
+              <div class="vnum">03</div>
+              <div>
+                <h4>Local Intelligence</h4>
+                <p>
+                  Nepal's cultural uniqueness is a competitive advantage. We
+                  invest in companies that honour their roots.
+                </p>
+              </div>
+            </div>
+            <div class="val-row">
+              <div class="vnum">04</div>
+              <div>
+                <h4>Long-Term Thinking</h4>
+                <p>
+                  We measure success in decades, not quarters. Enduring
+                  businesses require patience and discipline.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section id="approach" class="sec">
+      <div class="wrap">
+        <div class="appr-hdr">
+          <div>
+            <div class="slabel reveal">Our Approach</div>
+            <h2 class="sh2 reveal">HOW WE<br />WORK.</h2>
+          </div>
+          <p
+            class="reveal"
+            style="
+              font-size: 0.9rem;
+              font-weight: 300;
+              line-height: 1.8;
+              color: var(--ink-3);
+              max-width: 380px;
+            "
+          >
+            Fast decisions, honest feedback, relentless support from first
+            conversation to exit.
+          </p>
+        </div>
+
+        <div class="steps reveal">
+          <div class="step">
+            <div class="sn">01</div>
+            <div>
+              <div class="step-title">Source & Scout</div>
+              <div class="step-desc">
+                We actively map founder ecosystems across Nepal — not waiting
+                for deals to find us.
+              </div>
+            </div>
+            <span class="stag">Ongoing</span>
+          </div>
+          <div class="step">
+            <div class="sn">02</div>
+            <div>
+              <div class="step-title">Deep Diligence</div>
+              <div class="step-desc">
+                Technical, market, financial, and cultural due diligence in 90
+                days before any commitment.
+              </div>
+            </div>
+            <span class="stag">90 Days</span>
+          </div>
+          <div class="step">
+            <div class="sn">03</div>
+            <div>
+              <div class="step-title">Active Partnership</div>
+              <div class="step-desc">
+                Operating partners embedded post-investment — talent, strategy,
+                and global network access.
+              </div>
+            </div>
+            <span class="stag">Continuous</span>
+          </div>
+          <div class="step">
+            <div class="sn">04</div>
+            <div>
+              <div class="step-title">Value Creation</div>
+              <div class="step-desc">
+                Growth orchestration from Series A through exit, connecting you
+                to international capital.
+              </div>
+            </div>
+            <span class="stag">Series A–C</span>
+          </div>
+          <div class="step">
+            <div class="sn">05</div>
+            <div>
+              <div class="step-title">Responsible Exit</div>
+              <div class="step-desc">
+                Exits optimized for all stakeholders — wealth creation that
+                benefits Nepal's broader economy.
+              </div>
+            </div>
+            <span class="stag">Exit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="cta">
+      <div class="cta-wrap">
+        <h2 class="cta-h2">
+          PARTNER<br /><span class="stroke">WITH US.</span>
+        </h2>
+        <div>
+          <p class="cta-sub">
+            We review every pitch. Seed to Series A. Nepal-based founders get a
+            response within 72 hours.
+          </p>
+          <div class="cta-btns">
+            <a href="#contact" class="bw solid">Submit Your Pitch →</a>
+            <a href="#team" class="bw ghost">Meet the Team</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="contact" class="sec">
+      <div class="wrap">
+        <div class="contact-layout">
+          <div>
+            <div class="slabel reveal">Contact</div>
+            <h2 class="sh2 reveal">LET'S START<br />THE CONVERSATION.</h2>
+            <div class="cm-list reveal">
+              <div>
+                <div class="cml">HQ</div>
+                <div class="cmv">Lazimpat, Kathmandu 44600</div>
+              </div>
+              <div>
+                <div class="cml">General</div>
+                <div class="cmv">hello@antarprerana.vc</div>
+              </div>
+              <div>
+                <div class="cml">Pitch</div>
+                <div class="cmv">pitch@antarprerana.vc</div>
+              </div>
+              <div>
+                <div class="cml">Hours (NPT)</div>
+                <div class="cmv">Mon–Fri, 9:00 AM – 6:00 PM</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cf reveal">
+            <div class="f2">
+              <div class="fr">
+                <label>First Name</label
+                ><input type="text" placeholder="Aarav" />
+              </div>
+              <div class="fr">
+                <label>Last Name</label
+                ><input type="text" placeholder="Shrestha" />
+              </div>
+            </div>
+            <div class="fr">
+              <label>Email</label
+              ><input type="email" placeholder="founder@company.com" />
+            </div>
+            <div class="fr">
+              <label>I am a...</label
+              ><select>
+                <option value="">Select your role</option>
+                <option>Founder seeking investment</option>
+                <option>Limited Partner / Investor</option>
+                <option>Prospective team member</option>
+                <option>Media / Press</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="fr">
+              <label>Message</label
+              ><textarea
+                placeholder="Tell us about your company, traction, and what you're building..."
+              ></textarea>
+            </div>
+            <button class="fsub" id="fsub">SEND MESSAGE →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+      <div class="lightbox-inner">
+        <button
+          class="lightbox-close"
+          id="lightboxClose"
+          aria-label="Close image viewer"
+        >
+          ✕
+        </button>
+        <div class="lightbox-image-wrap">
+          <img id="lightboxImage" src="" alt="" />
+        </div>
+        <div class="lightbox-content">
+          <h3 class="lightbox-title" id="lightboxTitle"></h3>
+          <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="foot">
+        <div>
+          <div class="flogo">ANTAR<span class="hi">·</span>PRERANA</div>
+          <div class="fsub2">Igniting Nepal's entrepreneurial spirit</div>
+        </div>
+        <div class="flinks">
+          <a href="#portfolio">Portfolio</a>
+          <a href="#thesis">Thesis</a>
+          <a href="#team">Team</a>
+          <a href="blog.html">Blog</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="fcopy">© 2026 Antarprerana Capital Pvt. Ltd.</div>
+      </div>
+    </footer>
+
+    <script>
+      const TDATA = [
+        ["SunDhara Energy", "$4.2M Series A"],
+        ["KathPay", "$8M Series B"],
+        ["Yeti AI", "$1.5M Seed"],
+        ["HimalMed", "$3M Series A"],
+        ["AgroNepal", "$2M Seed"],
+        ["RouteMandu", "$6M Series A"],
+        ["CloudHimal", "$1M Pre-Seed"],
+        ["GreenGrid", "$5M Series A"],
+      ];
+
+      const track = document.getElementById("tickerTrack");
+      [...TDATA, ...TDATA].forEach(([n, r]) => {
+        const d = document.createElement("div");
+        d.className = "tick-item";
+        d.innerHTML = `<em>↑</em>${n} — ${r}`;
+        track.appendChild(d);
+      });
+
+      const revs = document.querySelectorAll(
+        ".reveal,.val-row,.num-cell,.mc,.tc,.lc",
+      );
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (!e.isIntersecting) return;
+            const el = e.target;
+            const sibs = [...el.parentElement.children].filter(
+              (c) => c.classList[0] === el.classList[0],
+            );
+            setTimeout(
+              () => el.classList.add("visible"),
+              Math.max(sibs.indexOf(el), 0) * 65,
+            );
+            io.unobserve(el);
+          });
+        },
+        { threshold: 0.07 },
+      );
+      revs.forEach((el) => io.observe(el));
+
+      document.getElementById("fsub").addEventListener("click", function () {
+        this.textContent = "SENT ✓";
+        this.style.background = "#1F4FA3";
+        setTimeout(() => {
+          this.textContent = "SEND MESSAGE →";
+          this.style.background = "";
+        }, 3000);
+      });
+
+      const galleryCards = document.querySelectorAll(".gallery-card");
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightboxImage");
+      const lightboxTitle = document.getElementById("lightboxTitle");
+      const lightboxCaption = document.getElementById("lightboxCaption");
+      const lightboxClose = document.getElementById("lightboxClose");
+
+      function openLightbox(card) {
+        const image = card.getAttribute("data-image");
+        const title = card.getAttribute("data-title");
+        const caption = card.getAttribute("data-caption");
+        lightboxImage.src = image;
+        lightboxImage.alt = title;
+        lightboxTitle.textContent = title;
+        lightboxCaption.textContent = caption;
+        lightbox.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("active");
+        document.body.style.overflow = "";
+        setTimeout(() => {
+          lightboxImage.src = "";
+          lightboxImage.alt = "";
+        }, 200);
+      }
+
+      galleryCards.forEach((card) => {
+        card.addEventListener("click", () => openLightbox(card));
+      });
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightbox.addEventListener("click", (e) => {
+        if (e.target === lightbox) closeLightbox();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && lightbox.classList.contains("active"))
+          closeLightbox();
+      });
+    </script>
+  </body>
+</html>
