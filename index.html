@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Antarprerana</title>
+    <title>Antarprerana — Brand Blue Theme</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap"
@@ -999,7 +999,7 @@
         display: flex;
         gap: 20px;
         align-items: flex-start;
-        padding: 32px 0 32px 32px;
+        padding: 32px 0 32px 24px;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         opacity: 0;
         transform: translateX(20px);
@@ -1485,7 +1485,6 @@
         }
         .hero-main,
         .thesis-layout,
-        .val-split,
         .team-hdr,
         .appr-hdr,
         .contact-layout {
@@ -1526,6 +1525,7 @@
           gap: 40px;
         }
       }
+
       @media (max-width: 900px) {
         .nav-links {
           display: none;
@@ -1539,7 +1539,64 @@
           flex-direction: column;
           align-items: flex-start;
         }
+
+        #values .val-split {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        #values .val-sticky {
+          position: static;
+          top: auto;
+        }
+
+        #values .val-big {
+          font-size: clamp(3rem, 16vw, 5.5rem);
+          line-height: 0.9;
+          margin-bottom: 18px;
+        }
+
+        #values .val-sub {
+          max-width: 100%;
+          margin-bottom: 22px;
+        }
+
+        #values .np-badge {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+
+        #values .val-list {
+          border-left: none;
+        }
+
+        #values .val-row {
+          padding: 24px 0;
+          gap: 16px;
+          display: grid;
+          grid-template-columns: 56px 1fr;
+          align-items: start;
+        }
+
+        #values .vnum {
+          min-width: auto;
+          font-size: 2rem;
+        }
+
+        #values .val-row h4 {
+          font-size: 1rem;
+          line-height: 1.2;
+          margin-bottom: 8px;
+        }
+
+        #values .val-row p {
+          font-size: 0.95rem;
+          line-height: 1.7;
+        }
       }
+
       @media (max-width: 700px) {
         .team-grid,
         .gallery-grid,
@@ -1560,14 +1617,45 @@
           padding: 18px 18px 20px;
         }
       }
+
+      @media (max-width: 600px) {
+        #values {
+          padding: 80px 0;
+        }
+
+        #values .wrap {
+          padding: 0 20px;
+        }
+
+        #values .slabel {
+          margin-bottom: 12px;
+        }
+
+        #values .val-big {
+          font-size: clamp(2.6rem, 18vw, 4.5rem);
+        }
+
+        #values .val-row {
+          grid-template-columns: 1fr;
+          gap: 10px;
+          padding: 20px 0;
+        }
+
+        #values .vnum {
+          font-size: 1.8rem;
+        }
+
+        #values .val-row h4,
+        #values .val-row p {
+          margin-left: 0;
+        }
+      }
     </style>
   </head>
   <body>
     <nav>
       <div class="nav-logo-block">
-        <a href="index.html" class="logo-link">
-          <div class="logo">ANTAR<span class="logo-dot">·</span>PRERANA</div>
-        </a>
+        <div class="logo">ANTAR<span class="logo-dot">·</span>PRERANA</div>
       </div>
       <ul class="nav-links">
         <li><a href="#portfolio">Portfolio</a></li>
